@@ -7,7 +7,7 @@ class Solution:
             if d[fruits[r]]==0:
                 count-=1
             d[fruits[r]]+=1
-            while count<0:
+            while count==-1:
                 d[fruits[l]]-=1
                 if d[fruits[l]]==0:
                     count+=1
