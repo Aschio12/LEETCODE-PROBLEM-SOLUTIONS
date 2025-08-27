@@ -20,3 +20,7 @@ class Solution:
                         t += 1
                     ans += countZeros + 1
         return ans
+
+
+        
+               
