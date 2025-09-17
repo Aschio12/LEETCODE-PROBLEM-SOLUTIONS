@@ -1,21 +1,23 @@
 class Solution:
     def maxScore(self, s: str) -> int:
         ans,c0,c1,r=0,0,0,0
-        if int(s[r])==0:
-            c0+=1
-        r+=1
-        for i in range(1,len(s)):
-            if int(s[i])==1:
-                c1+=1
-        ans=max(ans,c0+c1)
-        while r<len(s)-1:
-            if int(s[r])==0:
+        right1=[]
+        left0=[]
+        l,r=0,len(s)-1
+        while l<len(s)-1 and r>0:
+            if int(s[l])==0:
                 c0+=1
+                left0.append(c0)
             else:
-                c1-=1
-            ans=max(ans,c0+c1)
-            r+=1
+                left0.append(c0)
+            if int(s[r])==1:
+                c1+=1
+                right1.append(c1)
+            else:
+                right1.append(c1)
+            l+=1
+            r-=1
+        right1=right1[::-1]
+        for i,j in zip(left0,right1):
+            ans=max(ans,i+j)
         return ans
-            
-        
-        
