@@ -3,9 +3,9 @@ class Solution:
         stack=[]
         for i in range(len(operations)):
             if operations[i]=="+":
-                stack.append(int(stack[-1])+int(stack[-2]))
+                stack.append(stack[-1]+stack[-2])
             elif operations[i]=="D":
-                stack.append(2*(int(stack[-1])))
+                stack.append(2*(stack[-1]))
             elif operations[i]=="C":
                 stack.pop()
             else:
