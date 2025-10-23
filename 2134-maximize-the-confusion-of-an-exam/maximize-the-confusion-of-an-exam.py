@@ -4,10 +4,10 @@ class Solution:
         d=defaultdict(int)
         for r in range(len(answerKey)):
             d[answerKey[r]]+=1
-            while d["T"]>k and d["F"]>k:
-                d[answerKey[l]]-=1
-                window-=1
-                l+=1
-            window=r-l+1
+            minor=min(d["T"],d["F"])
+            if minor<=k:
+                window+=1
+            else:
+                d[answerKey[r-window]]-=1
             ans=max(ans,window)
         return (ans)
