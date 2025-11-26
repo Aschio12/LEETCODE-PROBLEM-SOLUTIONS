@@ -1,17 +1,19 @@
 class Solution:
     def timeRequiredToBuy(self, tickets: List[int], k: int) -> int:
-        queue=deque()
-        for i in range(len(tickets)):
-            queue.append([tickets[i],i])
-        count=0
+        count,ticketIndex=0,deque()
+
+        for index,ticket in enumerate(tickets):
+            ticketIndex.append([ticket,index])
         while True:
-            if queue[0][0]>0:
-                queue[0][0]-=1
-                count+=1
-            if queue[0][0]==0 and queue[0][1]==k:
+            ticketIndex[0][0]-=1
+            count+=1
+            if ticketIndex[0][1]==k and ticketIndex[0][0]==0:
                 return count
+            elif ticketIndex[0][0]!=0:
+                t=ticketIndex.popleft()
+                ticketIndex.append(t)
             else:
-                queue.append(queue[0])
-                queue.popleft()
+                ticketIndex.popleft()
             
+                
 
