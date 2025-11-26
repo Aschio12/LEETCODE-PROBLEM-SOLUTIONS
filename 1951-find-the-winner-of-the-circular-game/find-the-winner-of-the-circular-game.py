@@ -1,10 +1,11 @@
 class Solution:
     def findTheWinner(self, n: int, k: int) -> int:
         index=0
-        arr=[]
+        queue=deque()
         for i in range(1,n+1):
-            arr.append(i)
-        while len(arr)>1:
-            index=(index+k-1)%len(arr)
-            arr.pop(index)
-        return arr[0]
+            queue.append(i)
+        while len(queue)>1:
+            for i in range(k-1):
+                queue.append(queue.popleft())
+            queue.popleft()
+        return queue[0]
