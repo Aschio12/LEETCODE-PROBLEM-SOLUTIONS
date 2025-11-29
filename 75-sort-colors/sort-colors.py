@@ -4,14 +4,21 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         
-        for i in range(len(nums)):
-            mini,minv=i,nums[i]
-            for j in range(i+1,len(nums)):
-                if nums[j]<minv:
-                    mini=j
-                    minv=nums[j]
+        count=[0,0,0]
+        for n in nums:
+            count[n]+=1
+        i,k=0,0
+        while i<len(nums):
+            if count[k]>0:
+                nums[i]=k
+                count[k]-=1
+                i+=1
+            else:
+                k+=1
+            
 
-            nums[i],nums[mini]=nums[mini],nums[i]
+        
+
         
 
 
