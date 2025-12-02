@@ -1,10 +1,13 @@
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
-        ans,start,current_sum=float("inf"),0,0
-        for right in range(len(nums)):
-            current_sum+=nums[right]
-            while current_sum>=target:
-                ans=min(ans,right-start+1)
-                current_sum-=nums[start]
-                start+=1
-        return ans if ans!=float("inf") else 0
+        def twoSum(arr,targ):
+            left=0
+            tot,length=0,float("inf")
+            for right in range(len(arr)):
+                tot+=arr[right]       
+                while tot>=targ:
+                    length=min(length,right-left+1)
+                    tot-=arr[left]
+                    left+=1
+            return(length if length!=float("inf") else 0)
+        return twoSum(nums,target)
