@@ -1,9 +1,22 @@
 class Solution:
     def findUnsortedSubarray(self, nums: List[int]) -> int:
-        nums2=sorted(nums)
-        l,r=len(nums),float("-inf")
-        for i in range(len(nums)):
-            if nums[i]!=nums2[i]:
-                l=min(l,i)
-                r=max(r,i)
-        return 0 if l==len(nums) else r-l+1
+        n,stack=len(nums),[]
+        l=n
+        mx=float("-inf")
+        for index,val in enumerate(nums):
+            while stack and stack[-1][1]>val:
+                tup=stack.pop()
+                l=min(l,tup[0])
+                mx=max(mx,tup[1])
+            stack.append((index,val))
+        if l==n:
+            return 0 
+        end=0
+        for i in range(n-1,-1,-1):
+            if nums[i]<mx:
+                end=i
+                break
+        return end-l+1
+            
+
+
