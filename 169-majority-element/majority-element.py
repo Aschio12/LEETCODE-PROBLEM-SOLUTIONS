@@ -5,9 +5,9 @@ class Solution:
         for num in nums:
             if num in counter:
                 counter[num]+=1
-                if counter[num]>majority:
-                    return num
             else:
                 counter[num]=1
-        return nums[0]
+            if counter[num]>majority:
+                    return num
+        
         
