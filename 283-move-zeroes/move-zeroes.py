@@ -3,8 +3,16 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        holder=0
-        for seeker in range(len(nums)):
-            if nums[seeker]!=0:
-                nums[holder],nums[seeker]=nums[seeker],nums[holder]
-                holder+=1
+        found=False
+        for i in range(len(nums)):
+            if nums[i]==0 and not found:
+                found=True
+                holder=i
+            elif nums[i]!=0:
+                if found:
+                    nums[i],nums[holder]=nums[holder],nums[i]
+                    while nums[holder]!=0 and holder<i:
+                        holder+=1
+                    
+                
+        
