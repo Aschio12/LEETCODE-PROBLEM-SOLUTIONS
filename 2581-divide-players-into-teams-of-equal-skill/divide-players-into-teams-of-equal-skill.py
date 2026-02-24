@@ -1,16 +1,24 @@
 class Solution:
-    def dividePlayers(self, nums: List[int]) -> int:
-        nums.sort()
-        left,right=0,len(nums)-1
-        chem,tot=0,nums[left]+nums[right]
-        while left<right:
-            if nums[left]+nums[right]==tot:
-                chem+=(nums[left]*nums[right])
+    def dividePlayers(self, skill: List[int]) -> int:
+
+        summ,found=0,False
+        skill.sort()
+        l,r=0,len(skill)-1
+        prod=0
+        while l<r:
+            if not found:
+                summ=skill[l]+skill[r]
+                found=not found
+                prod+=(skill[l]*skill[r])
             else:
-                return -1
-            right-=1
-            left+=1
-        return chem
+                if skill[l]+skill[r]!=summ:
+                    return -1
+                else:
+                    prod+=(skill[l]*skill[r])
+            l+=1
+            r-=1
+        return prod
+
+            
 
         
-            
