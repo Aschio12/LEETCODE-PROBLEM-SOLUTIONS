@@ -1,21 +1,16 @@
 class Solution:
-    def productExceptSelf(self, nums: List[int]) -> List[int]:
-        c0,prod=0,1
-        for i in nums:
-            if i!=0:
-                prod*=i
-            else:
-                c0+=1
+    def productExceptSelf(self, arr: List[int]) -> List[int]:
+        left=[1]* len(arr)
+        right=[1]* len(arr)
+        bl=1
+        br=1
+        for i in range(len(left)):
+            left[i]=bl
+            bl*=arr[i]
+        for i in range(len(right)-1,-1,-1):
+            right[i]=br
+            br*=arr[i]
         ans=[]
-        if c0==1:
-            for i in range(len(nums)):
-                if nums[i]==0:
-                    ans.append(prod)
-                else:
-                    ans.append(0)
-        elif c0==0:
-            for i in range(len(nums)):
-                ans.append(prod//nums[i])
-        else:
-            ans=[0]*len(nums)
-        return ans
+        for i in range(len(arr)):
+            ans.append(left[i]*right[i])
+        return(ans)
