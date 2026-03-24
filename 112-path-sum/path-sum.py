@@ -13,9 +13,7 @@ class Solution:
             current+=root.val
             if not root.left and not root.right and  current==targetSum:
                 return current==targetSum
-            if rec(root.left,targetSum,current) or rec(root.right,targetSum,current):
-                return True
-            else:
-                return False
+            return rec(root.left,targetSum,current) or rec(root.right,targetSum,current)
+             
         return rec(root,targetSum,0)
             
